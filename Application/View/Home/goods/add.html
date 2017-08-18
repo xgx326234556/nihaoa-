@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="./Public/Admin/css/pintuer.css">
+    <link rel="stylesheet" href="./Public/Admin/css/admin.css">
+    <script src="./Public/Admin/js/jquery.js"></script>
+    <script src="./Public/Admin/js/pintuer.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加内容</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="index.php?p=Home&c=goods&a=update">
+            <!--<input type="hidden" name="id" value="<?=$key['order_id']?>"/>-->
+            <!--电话： <input type="text" name="phone" value="<?=$key['phone']?>"/><br/><br/>-->
+            <!--姓名： <input type="text" name="realname"  value="<?=$key['realname']?>" cols="20" rows="10"></input><br/><br/>-->
+            货物已运到： <input type="radio" name="daole" value="1"/>
+            <?php
+            $id=$_GET['id'];
+             ?>
+            <input type="hidden" name="id" value="<?=$id?>"/>
+
+            <!--预约日期：<input type="text" name="" value="0"/><br/><br/>-->
+            <!--预约状态：<input type="radio" name="status" <?=$key['phone']?'checked':''?>/>-->
+            <!--<input type="radio" name="status" <?=$key['phone']?'':'checked'?>/><br/><br/>-->
+            <!--回复信息：<input type="text" name="reply" value="<?=$key['reply']?>"/><br/><br/>-->
+
+            <input type="submit" value="提交"/>
+
+
+        </form>
+    </div>
+</div>
+
+</body></html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="./Public/Admin/css/pintuer.css">
+    <link rel="stylesheet" href="./Public/Admin/css/admin.css">
+    <script src="./Public/Admin/js/jquery.js"></script>
+    <script src="./Public/Admin/js/pintuer.js"></script>
+</head>
+<body>
+<form method="post" action="index.php?p=Admin&c=Plans&a=index" >
+    <div class="panel admin-panel">
+        <div class="panel-head">
+            <strong class="icon-reorder"> 内容列表</strong>
+            <a href="" style="float:right; display:none;">添加字段</a>
+        </div>
+        <h1>充值排行榜</h1>
+        <!--<div class="padding border-bottom">-->
+            <!--<ul class="search" style="padding-left:10px">-->
+                <!--<li>-->
+                    <!--<a class="button border-main icon-plus-square-o" href="index.php?p=Home&c=order&a=form"> 添加预约</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+
+
+
+
+
+<table border="1"  width="40%">
+
+    <tr>
+        <th>排名</th>
+        <th>姓名</th>
+        <th>金额</th>
+    </tr>
+    <?php foreach($keys as $key=>$row):?>
+    <tr>
+        <td align="center"><?=($key+1)?></td>
+        <td align="center"><?=$row['username']?></td>
+        <td align="center"><?=$row['zongjine']?></td>
+    </tr>
+    <?php endforeach;?>
+
+
+
+
+</table>
+
+        <br/><br/><br/><br/><br/>
+
+        <h1>消费排行榜</h1>
+        <table border="1"  width="40%">
+
+            <tr>
+                <th>排名</th>
+                <th>姓名</th>
+                <th>金额</th>
+            </tr>
+            <?php foreach($ro as $key=>$row):?>
+            <tr>
+                <td align="center"><?=($key+1)?></td>
+                <td align="center"><?=$row['username']?></td>
+                <td align="center"><?=$row['zongjine']?></td>
+            </tr>
+            <?php endforeach;?>
+        </table>
+        <br/><br/><br/><br/><br/>
+
+        <h1>服务排行榜</h1>
+        <table border="1"  width="40%">
+
+            <tr>
+                <th>排名</th>
+                <th>姓名</th>
+                <th>服务次数</th>
+            </tr>
+            <?php foreach($huwu as $key=>$row):?>
+            <tr>
+                <td align="center"><?=($key+1)?></td>
+                <td align="center"><?=$row['username']?></td>
+                <td align="center"><?=$row['conuts']?></td>
+            </tr>
+            <?php endforeach;?>
+        </table>

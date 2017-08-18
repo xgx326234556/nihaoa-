@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="./Public/Admin/css/pintuer.css">
+    <link rel="stylesheet" href="./Public/Admin/css/admin.css">
+    <script src="./Public/Admin/js/jquery.js"></script>
+    <script src="./Public/Admin/js/pintuer.js"></script>
+</head>
+<body>
+<form method="post" action="index.php?p=Admin&c=Plans&a=index" >
+    <div class="panel admin-panel">
+        <div class="panel-head">
+            <strong class="icon-reorder"> 内容列表</strong>
+            <a href="" style="float:right; display:none;">添加字段</a>
+        </div>
+        <div class="padding border-bottom">
+            <ul class="search" style="padding-left:10px">
+                <li>
+                    <a class="button border-main icon-plus-square-o" href="index.php?p=Admin&c=order&a=form"> 添加内容</a>
+                </li>
+            </ul>
+        </div>
+        <table border="1"  width="80%">
+            <tr>
+                <th>ID</th>
+                <th>电话</th>
+                <th>姓名</th>
+                <th>预约美发师</th>
+                <th>备注</th>
+                <th>预约日期</th>
+                <th>预约状态</th>
+                <th>回复信息</th>
+                <th>预约套餐</th>
+
+            </tr>
+            <?php foreach($key as $row):?>
+            <tr>
+                <td align="center"><?=$row['order_id']?></td>
+                <td align="center"><?=$row['phone']?></td>
+                <td align="center"><?=$row['realname']?></td>
+                <td align="center"><?=$row['barber']?></td>
+                <td align="center"><?=$row['content']?></td>
+                <td align="center"><?=date('Y-m-d',$row['date'])?></td>
+                <?php
+                if($row['status']==2){?>
+                <td align="center"><?='未处理'?>
+                <?php } else{ ?>
+                <td align="center"><?=$row['status']?'成功':'失败'?>
+                <?php }?>
+                <!--<a href="index.php?p=Admin&c=order&a=edit&id=<?=$row['order_id']?>">更改状态</a>-->
+                    <a href="index.php?p=Admin&c=order&a=edit&id=<?=$row['order_id']?>">更改状态</a>
+                </td>
+                <td align="center"><?=$row['reply']?></td>
+                <td align="center"><?=$row['taocan']?></td>
+                <!--<td align="center">-->
+                    <!--<a href="index.php?p=Admin&c=order&a=edit&id=<?=$row['order_id']?>">修改</a>|-->
+                    <!--<a href="index.php?p=Admin&c=order&a=delete&id=<?=$row['order_id']?>">删除</a>-->
+                <!--</td>-->
+            </tr>
+            <?php endforeach;?>
+
+
+            <tr>
+                <!--<td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>-->
+                <td colspan="8"><div class="pagelist">
+                    <a href="index.php?p=Admin&c=order&a=index&page=<?=$page-1<1?1:($page-1)?>">上一页</a>
+                    <!--<span class="current">1</span>-->
+                    <?php for($i=1;$i<=$total;$i++):?>
+                    <a href="index.php?p=Admin&c=order&a=index&page=<?=$i?>" <?=$i==$page?'class="current"':''?>><?=$i?></a>
+                    <?php endfor;?>
+                    <a href="index.php?p=Admin&c=order&a=index&page=<?=$page+1>$total?$total:($page+1)?>">下一页</a>
+                    <a href="index.php?p=Admin&c=order&a=index&page=<?=$total?>">尾页</a> </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<script type="text/javascript">
+
+    //搜索
+    function changesearch(){
+
+    }
+
+    //单个删除
+    function del(id,mid,iscid){
+        if(confirm("您确定要删除吗?")){
+
+        }
+    }
+
+    //全选
+    $("#checkall").click(function(){
+        $("input[name='id[]']").each(function(){
+            if (this.checked) {
+                this.checked = false;
+            }
+            else {
+                this.checked = true;
+            }
+        });
+    })
+
+    //批量删除
+    function DelSelect(){
+        var Checkbox=false;
+        $("input[name='id[]']").each(function(){
+            if (this.checked==true) {
+                Checkbox=true;
+            }
+        });
+        if (Checkbox){
+            var t=confirm("您确认要删除选中的内容吗？");
+            if (t==false) return false;
+            $("#listform").submit();
+        }
+        else{
+            alert("请选择您要删除的内容!");
+            return false;
+        }
+    }
+
+    //批量排序
+    function sorts(){
+        var Checkbox=false;
+        $("input[name='id[]']").each(function(){
+            if (this.checked==true) {
+                Checkbox=true;
+            }
+        });
+        if (Checkbox){
+
+            $("#listform").submit();
+        }
+        else{
+            alert("请选择要操作的内容!");
+            return false;
+        }
+    }
+
+
+    //批量首页显示
+    function changeishome(o){
+        var Checkbox=false;
+        $("input[name='id[]']").each(function(){
+            if (this.checked==true) {
+                Checkbox=true;
+            }
+        });
+        if (Checkbox){
+
+            $("#listform").submit();
+        }
+        else{
+            alert("请选择要操作的内容!");
+
+            return false;
+        }
+    }
+
+    //批量推荐
+    function changeisvouch(o){
+        var Checkbox=false;
+        $("input[name='id[]']").each(function(){
+            if (this.checked==true) {
+                Checkbox=true;
+            }
+        });
+        if (Checkbox){
+
+
+            $("#listform").submit();
+        }
+        else{
+            alert("请选择要操作的内容!");
+
+            return false;
+        }
+    }
+
+    //批量置顶
+    function changeistop(o){
+        var Checkbox=false;
+        $("input[name='id[]']").each(function(){
+            if (this.checked==true) {
+                Checkbox=true;
+            }
+        });
+        if (Checkbox){
+
+            $("#listform").submit();
+        }
+        else{
+            alert("请选择要操作的内容!");
+
+            return false;
+        }
+    }
+
+
+    //批量移动
+    function changecate(o){
+        var Checkbox=false;
+        $("input[name='id[]']").each(function(){
+            if (this.checked==true) {
+                Checkbox=true;
+            }
+        });
+        if (Checkbox){
+
+            $("#listform").submit();
+        }
+        else{
+            alert("请选择要操作的内容!");
+
+            return false;
+        }
+    }
+
+    //批量复制
+    function changecopy(o){
+        var Checkbox=false;
+        $("input[name='id[]']").each(function(){
+            if (this.checked==true) {
+                Checkbox=true;
+            }
+        });
+        if (Checkbox){
+            var i = 0;
+            $("input[name='id[]']").each(function(){
+                if (this.checked==true) {
+                    i++;
+                }
+            });
+            if(i>1){
+                alert("只能选择一条信息!");
+                $(o).find("option:first").prop("selected","selected");
+            }else{
+
+                $("#listform").submit();
+            }
+        }
+        else{
+            alert("请选择要复制的内容!");
+            $(o).find("option:first").prop("selected","selected");
+            return false;
+        }
+    }
+
+</script>
+</body>
+</html>

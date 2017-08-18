@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="./Public/Admin/css/pintuer.css">
+    <link rel="stylesheet" href="./Public/Admin/css/admin.css">
+    <script src="./Public/Admin/js/jquery.js"></script>
+    <script src="./Public/Admin/js/pintuer.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加内容</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="index.php?p=Admin&c=user&a=update" enctype="multipart/form-data">
+            用户名： <input type="text" name="username" value="<?=$key['username']?>"/><br/><br/>
+            密码： <input type="text" name="password" value="<?=$key['password']?>" cols="20" rows="10"></input><br/><br/>
+            性别： <input type="text" name="sex" value="<?=$key['sex']?>"/><br/><br/>
+            电话：<input type="text" name="telephone" value="<?=$key['telephone']?>"/><br/><br/>
+            备注： <input type="text" name="remark" value="<?=$key['remark']?>"/><br/><br/>
+            充值金额：<input type="text" name="money" value="<?=$key['money']?>"/><br/><br/>
+            头像:<input type="file" name="photo"/><br/><br/>
+             <image src="Uploads/<?=$key['photo']?>"/><br/><br/>
+            <input type="hidden" name="id" value="<?=$key['user_id']?>"/>
+            <input type="submit" value="提交"/>
+
+
+        </form>
+    </div>
+</div>
+
+</body></html>

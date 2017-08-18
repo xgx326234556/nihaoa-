@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="./Public/Admin/css/pintuer.css">
+    <link rel="stylesheet" href="./Public/Admin/css/admin.css">
+    <script src="./Public/Admin/js/jquery.js"></script>
+    <script src="./Public/Admin/js/pintuer.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加内容</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="index.php?p=Admin&c=goods&a=add">
+            货物名称： <input type="text" name="name"/><br/><br/>
+            递货员电话： <input type="text" name="phone"  cols="20" rows="10"></input><br/><br/>
+
+            发货时间：<input type="date" name="date" placeholder="时间"/><br/><br/>
+
+            订单号：<select name="indent">
+            <?php
+              foreach($key as $row){?>
+                <option><?=$row['indent']?></option>
+            <?php }?>
+        </select>
+            <br/>
+            状态：<input type="radio" name="status" value="1"/>发货
+            <input type="radio" name="status" value="0"/>未发货
+            <br/>
+            <input type="hidden" name="id" value="<?=$rows['goods_id']?>"/>
+            <input type="submit" value="提交"/>
+        </form>
+    </div>
+</div>
+
+</body></html>
